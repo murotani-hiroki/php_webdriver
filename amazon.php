@@ -1,18 +1,10 @@
 <?php
 require_once './vendor/autoload.php';
 
-use Doctrine\DBAL\Driver\DrizzlePDOMySql\Driver;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-
 use Facebook\WebDriver\Chrome\ChromeDriver;
-
 use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\WebDriverExpectedCondition;
-
-use Facebook\WebDriver\Exception\WebDriverException;
-use Facebook\WebDriver\WebDriver;
 
 function getAmazonInfo(?string $janCode) {
 
@@ -61,5 +53,3 @@ function getAmazonInfo(?string $janCode) {
 
     return ['asin' => $asin, 'price' => $price ];
 }
-
-//var_dump(getAmazonInfo('坂の上の雲'));

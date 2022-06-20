@@ -1,18 +1,11 @@
 <?php
 require_once './vendor/autoload.php';
 
-use Doctrine\DBAL\Driver\DrizzlePDOMySql\Driver;
 use Facebook\WebDriver\Chrome\ChromeOptions;
-
 use Facebook\WebDriver\Chrome\ChromeDriver;
-
 use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\WebDriverExpectedCondition;
-
 use Facebook\WebDriver\Exception\WebDriverException;
-use Facebook\WebDriver\WebDriver;
 
 function getYahooInfo(string $url) {
 
@@ -42,15 +35,11 @@ function getYahooInfo(string $url) {
         $price = str_replace(',', '', $price);
         $price = str_replace('円', '', $price);
         $yahooInfos[] = ['shop' => $shopName, 'url' => $url, 'price' => $price ];
-            
-        //echo $detailUrl . '<br/>';
-        //$detail = $item->findElements(WebDriverBy::cssSelector('div.elName>a'))[0]->click();
     }
 
 
     foreach($yahooInfos as &$yahooInfo) {
         try {
-            //echo $yahooInfo['url'] . '<br/>';
             $driver->get($yahooInfo['url']);
         } catch(WebDriverException $e) {
             // skip

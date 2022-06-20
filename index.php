@@ -6,9 +6,8 @@ require_once './amazon.php';
 //$yahooInfo = getYahooInfo('https://store.shopping.yahoo.co.jp/yardforce-official/c0bdc9caa4.html#sideNaviItems');
 //$yahooInfos = getYahooInfo('https://store.shopping.yahoo.co.jp/sake-premoa/search.html?p=%28%E3%83%86%E3%83%AC%E3%83%93+%E3%83%96%E3%83%AB%E3%83%BC%E3%83%AC%E3%82%A4%29&strcid=b1c7c1fcb4&used=#CentSrchFilter1');
 $yahooInfos = getYahooInfo($_POST['url']);
-//$janCodes = array_map(fn($i) => $i['janCode'], $yahooInfo);
 
-$results = [];
+$results = ['Yahoo JAN,Yahoo販売価格,ASIN,Amazon販売価格'];
 foreach ($yahooInfos as &$yahooInfo) {
     if (@!$yahooInfo['janCode']) {
         continue;
@@ -24,7 +23,6 @@ $fileName = $yahooInfos[0]['shop'] . '.csv';
 header('Content-Type: application/octet-stream');
 header('Content-Disposition: attachment; filename=' . $fileName);
 echo $csv;
-//var_dump($csv);
 ?>
 <?php } else { ?>
 <html>
