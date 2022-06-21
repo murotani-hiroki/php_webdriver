@@ -43,11 +43,15 @@ function getAmazonInfo(?string $janCode) {
         return ['asin' => '', 'price' => '' ];
     }
     $asin = $items[0]->getAttribute('data-asin');
+    
+    $price = '';
     $items = $driver->findElements(WebDriverBy::cssSelector('div.s-result-item div.sg-col-inner .a-price-whole'));
-    $price = $items[0]->getText();
-    $price = str_replace('¥', '', $price);
-    $price = str_replace('￥', '', $price);
-    $price = str_replace(',', '', $price);
+    if ($items) {
+        $price = $items[0]->getText();
+        $price = str_replace('¥', '', $price);
+        $price = str_replace('￥', '', $price);
+        $price = str_replace(',', '', $price);
+    }
 
     $driver->close();
 
