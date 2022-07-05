@@ -14,6 +14,8 @@ function getYahooInfo(string $url) {
 
     $options = new ChromeOptions();
     //$options->addArguments(['--headless']);
+    //$options->addArguments(['--no-sandbox']);
+    $options->addArguments(['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']);
     //$options->addArguments(["window-size=1024,2048"]);
 
     //$host = 'http://localhost:4444/wd/hub';
@@ -48,15 +50,18 @@ function getYahooInfo(string $url) {
         $detail = $driver->findElements(WebDriverBy::cssSelector('div#itm_cat'))[0];
         $elRows = $detail->findElements(WebDriverBy::cssSelector('li.elRow'));
 
+        $yahooInfo['janCode'] = '';
         foreach ($elRows as $elRow) {
             $rowTitle = $elRow->findElements(WebDriverBy::cssSelector('div.elRowTitle > p'))[0]->getText();
             if (str_starts_with($rowTitle, 'JAN')) {
                 $yahooInfo['janCode'] = $elRow->findElements(WebDriverBy::cssSelector('div.elRowData > p'))[0]->getText();
             }
         }
+        error_log('Yahoo ' . $shopName  . ' janCode=' . $yahooInfo['janCode'] . "\n", 3, './debug.log');
     }
 
     $driver->close();
+
 
     return $yahooInfos;
 }

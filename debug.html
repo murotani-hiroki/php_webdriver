@@ -1,0 +1,36 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function() {
+    $('#go').on('click', function() {
+        $.ajax({
+            url: 'http://localhost:8080/debug1.php',
+            type: 'post',
+            data: {},
+            async: true,
+            success: function(data) {
+                $('#a').html(data);
+            }
+        })
+        $.ajax({
+            url: 'http://localhost:8080/debug2.php',
+            type: 'post',
+            data: {},
+            async: true,
+            success: function(data) {
+                $('#b').html(data);
+            }
+        })
+    });
+})
+</script>
+</head>
+<body>
+<h1>Debug</h1>
+<div id="a"></div>
+<div id="b"></div>
+<div id="c"></div>
+<input type="button" value="go" id="go">
+</body>
+</html>

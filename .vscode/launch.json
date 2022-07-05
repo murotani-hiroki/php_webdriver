@@ -9,6 +9,9 @@
             "type": "php",
             "request": "launch",
             "port": 9003
+            //"pathMappings": {
+            //    "/var/www/html":"/Users/hmurotani/Documents/work/scraping/php_webdriver"
+            //}
         },
         {
             "name": "Launch currently open script",

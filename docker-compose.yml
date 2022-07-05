@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  php8-apache:
+    container_name: php8-apache
+    build:
+      context: .
+    ports:
+      - '8080:80'
+    volumes:
+      - ./:/var/www/html
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+
+

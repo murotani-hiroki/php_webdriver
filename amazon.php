@@ -16,7 +16,10 @@ function getAmazonInfo(?string $janCode) {
     putenv("webdriver.chrome.driver=" . $driverPath);
 
     $options = new ChromeOptions();
-    //$options->addArguments(['--headless']);
+    $options->addArguments(['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']);
+    //$options->addArguments(['--no-sandbox']);
+    //$options->addArguments(['--disable-gpu']);
+    //$options->addArguments(['--disable-dev-shm-usage']);
     //$options->addArguments(["window-size=1024,2048"]);
 
     //$host = 'http://localhost:4444/wd/hub';
@@ -54,6 +57,8 @@ function getAmazonInfo(?string $janCode) {
     }
 
     $driver->close();
+    
+    error_log('amazon asin=' . $asin . "\n", 3, './debug.log');
 
     return ['asin' => $asin, 'price' => $price ];
 }
