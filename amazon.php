@@ -17,10 +17,7 @@ function getAmazonInfo(?string $janCode) {
 
     $options = new ChromeOptions();
     $options->addArguments(['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']);
-    //$options->addArguments(['--no-sandbox']);
-    //$options->addArguments(['--disable-gpu']);
-    //$options->addArguments(['--disable-dev-shm-usage']);
-    //$options->addArguments(["window-size=1024,2048"]);
+    $options->addArguments(["window-size=1024,2048"]);
 
     //$host = 'http://localhost:4444/wd/hub';
     $capabilities = DesiredCapabilities::chrome();

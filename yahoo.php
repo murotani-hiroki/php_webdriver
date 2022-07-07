@@ -16,7 +16,7 @@ function getYahooInfo(string $url) {
     //$options->addArguments(['--headless']);
     //$options->addArguments(['--no-sandbox']);
     $options->addArguments(['--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage']);
-    //$options->addArguments(["window-size=1024,2048"]);
+    $options->addArguments(["window-size=1024,2048"]);
 
     //$host = 'http://localhost:4444/wd/hub';
     $capabilities = DesiredCapabilities::chrome();
